@@ -1,6 +1,6 @@
 package kz.seisen.solutionhomework1onspring.controllers;
 
-import kz.seisen.solutionhomework1onspring.models.ProxyImage;
+import kz.seisen.solutionhomework1onspring.models.proxy.ProxyImage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

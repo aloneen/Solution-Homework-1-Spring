@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flyweight Map Markers</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h1>Markers on the Map</h1>
+<div class="stats">
+    <p>Total Markers: <span th:text="${totalMarkers}"></span></p>
+    <p>Unique Marker Styles: <span th:text="${uniqueStyles}"></span></p>
+</div>
+
+<table>
+    <tr>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Icon</th>
+        <th>Color</th>
+        <th>Label Style</th>
+    </tr>
+    <tr th:each="marker : ${markers}">
+        <td th:text="${marker.latitude}"></td>
+        <td th:text="${marker.longitude}"></td>
+        <td th:text="${marker.style.icon}"></td>
+        <td th:text="${marker.style.color}"></td>
+        <td th:text="${marker.style.labelStyle}"></td>
+    </tr>
+</table>
+
+<a href="/" class="flyweight-link">Back to Gallery</a>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package kz.seisen.solutionhomework1onspring.models;
+package kz.seisen.solutionhomework1onspring.models.proxy;
 
 
 public class ProxyImage implements Image {
