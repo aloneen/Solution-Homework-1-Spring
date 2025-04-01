@@ -3,26 +3,77 @@
 <head>
     <title>Real Estate Gallery</title>
     <style>
-        img { width: 200px; height: auto; cursor: pointer; margin: 10px; }
+        .thumbnail {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+        #previewContainer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            text-align: center;
+        }
+        #previewImage {
+            max-width: 80%;
+            max-height: 80%;
+            margin-top: 5%;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <h2>Real Estate Gallery</h2>
 
-<div>
+<div class="gallery">
     <th:block th:each="image : ${images}">
-        <img th:src="${image.displayThumbnail()}"
+        <img class="thumbnail"
+             th:src="${image.displayThumbnail()}"
              th:attr="data-full=${image.display()}"
-             onclick="showFullImage(this)">
+             onclick="showFullImage(this.getAttribute('data-full'))">
     </th:block>
 </div>
 
+<div id="previewContainer">
+    <span class="close-btn" onclick="closePreview()">&times;</span>
+    <img id="previewImage">
+</div>
+
 <script>
-    function showFullImage(imgElement) {
-        let fullImageUrl = imgElement.getAttribute("data-full");
-        imgElement.src = fullImageUrl;
+    function showFullImage(fullImageUrl) {
+        const preview = document.getElementById('previewImage');
+        preview.src = fullImageUrl;
+        document.getElementById('previewContainer').style.display = 'block';
     }
+
+    function closePreview() {
+        document.getElementById('previewContainer').style.display = 'none';
+    }
+
+
+    document.getElementById('previewContainer').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closePreview();
+        }
+    });
 </script>
 
 </body>
