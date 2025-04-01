@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Real Estate Gallery</title>
+    <style>
+        img { width: 200px; height: auto; cursor: pointer; margin: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>Real Estate Gallery</h2>
+
+<div>
+    <th:block th:each="image : ${images}">
+        <img th:src="${image.displayThumbnail()}"
+             th:attr="data-full=${image.display()}"
+             onclick="showFullImage(this)">
+    </th:block>
+</div>
+
+<script>
+    function showFullImage(imgElement) {
+        let fullImageUrl = imgElement.getAttribute("data-full");
+        imgElement.src = fullImageUrl;
+    }
+</script>
+
+</body>
+</html>
